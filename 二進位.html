@@ -1,0 +1,41 @@
+<html>
+<head>
+	<title>二進位</title>
+	<!--<link type="text/txt" href="C:/Users/User/Desktop/Splatoon/Splatoon/mlc01/usr/title/00050000/10176900/code/splatoon0">-->
+</head>
+<body>
+	<input type="file" id="fileinput">
+	<p>code</p>
+	<script type="application/x-javascript" crossorigin="anonymous" src="https://raw.githubusercontent.com/AlexAltea/capstone.js/master/dist/capstone.min.js"></script>
+	<script defer>
+		let code = document.querySelector('p');
+		let input = document.querySelector('#fileinput');
+		input.addEventListener('change', function(){
+			let filereader = new FileReader();
+			//console.log(this.file
+			filereader.readAsArrayBuffer(this.files[0]);
+			filereader.onload = function(){
+				console.log('上傳成功');
+				code.textContent = parse(filereader.result);
+			}
+		}, false);
+		function parse(array_buffer){
+			let view = new DataView(array_buffer);
+			
+			let out = '';
+			for (let i=0,offset=0x674000; i<100; i++,offset+=4){
+				out += get(offset) + '\n';
+			}
+			return out;
+			
+			
+			function get(offset){
+				return (view.getUint32(offset)).toString(16)
+			}
+		}
+		let x = `
+		60000000 4e800020 9421ffd8 7c0802a6 bf610014 7c7f1b79 9001002c 40820014 38600050 48801a3d 7c7f1b79 418200d4 7fe3fb78 48790351 38000000 3d801000 901f0034 398c00d8 981f003a 39400001 919f0004 3900ffff 995f0039 911f002c 377f003c 995f0038 3ba00037 7c1e0378 3b800004 901f0028 40820014 38600010 488019e1 7c7b1b79 41820054 9381000c 7f63db79 b3c10008 b3a1000a 40820014 38600010 488019bd 2c030000 41820024 3c001000 93e30004 30000038 90030000 81010008 91030008 8121000c 9123000c 3d401000 394a0050 915b0000 38000001 3c60101d 981f004c 806398f0 48826e1d 7c641b78 38600000 48052c59 907f0030 7fe3fb78 bb610014 8001002c 7c0803a6 38210028 4e800020 7c0802a6 9421fff0 93e1000c 7c7f1b78 90010014 807f0030 818300e0 800c0024 7c0903a6 4e800421 897f003a 2c0b0000 41820028 807f0030 48053179 807f0030 818300e0 800c0024 7c0903a6 4e800421 38000000 981f003a 80010014 83e1000c 7c0803a6 38210010 4e800020 7c0802a6 9421fff0 93c10008`;
+		code.textContent = x;
+	</script>
+</body>
+</html>
