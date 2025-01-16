@@ -1,0 +1,14 @@
+/*
+
+	サポートするリージョンと言語を決めます
+	<Support>タグの後ろに、リージョン　言語　を並べてください
+	リージョン	：JP, US, EU, CN, KR, TW
+	言語		：Ja, en, fr, de, it, es, ch, ko, nl, pt, ru, ta
+	例：<Support>	US en
+		<Support>	JP ja
+	/*　～　*/　このマークで囲まれた中は無効化されます
+*/
+
+<Support>	US en
+<Support>	US fr
+<Support>	US es
